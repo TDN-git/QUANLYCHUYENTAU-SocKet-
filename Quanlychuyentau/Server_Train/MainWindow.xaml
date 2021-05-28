@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Server_Train"
         mc:Ignorable="d"
-        Title="Server" Height="450" Width="800">
+        Title="Server" Height="450" Width="800" Loaded="Window_Loaded">
     <Window.Triggers>
         <EventTrigger RoutedEvent="Loaded">
             <BeginStoryboard>

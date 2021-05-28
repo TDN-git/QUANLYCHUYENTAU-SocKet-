@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client_Train"
         mc:Ignorable="d"
-        Title="Client" Height="500" Width="800">
+        Title="Client" Height="500" Width="800" Loaded="Window_Loaded">
     <Grid Background="#729ea8">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>

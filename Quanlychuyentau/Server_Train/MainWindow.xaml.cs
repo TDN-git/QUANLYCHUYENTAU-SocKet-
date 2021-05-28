@@ -47,23 +47,7 @@ namespace Server_Train
         public MainWindow()
         {
             InitializeComponent();
-            Routes = Data.Read_Database.read_file();
             
-            
-
-            trip = new ObservableCollection<string>();
-            for (int i = 0; i < Routes.Count; i++)
-            {
-                trip.Add(Routes[i].TenChuyen);
-            }
-
-            kind = new ObservableCollection<string>();
-            for (int i = 0; i < Routes.Count; i++)
-            {
-                kind.Add(Routes[i].LoaiVe);
-            }
-
-            conect();
         }
 
         private void Accept_Train(object sender, RoutedEventArgs e)
@@ -235,6 +219,25 @@ namespace Server_Train
         {
             Dispatcher.BeginInvoke(
             new ThreadStart(() => listchat.Items.Add(message)));
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Routes = Data.Read_Database.read_file();
+
+            trip = new ObservableCollection<string>();
+            for (int i = 0; i < Routes.Count; i++)
+            {
+                trip.Add(Routes[i].TenChuyen);
+            }
+
+            kind = new ObservableCollection<string>();
+            for (int i = 0; i < Routes.Count; i++)
+            {
+                kind.Add(Routes[i].LoaiVe);
+            }
+
+            conect();
         }
     }
     

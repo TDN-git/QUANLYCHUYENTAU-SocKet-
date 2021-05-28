@@ -25,7 +25,7 @@ namespace Client_Train
     /// </summary>
     public partial class MainWindow : Window
     {
-        public List<Route> Listdata = new List<Route>();
+        public List<Route> Listdata;
         IPEndPoint ipe;
         TcpClient tcpclient;
         Stream stream;
@@ -34,10 +34,6 @@ namespace Client_Train
         public MainWindow()
         {
             InitializeComponent();
-
-            
-            Listdata = Read_Database.read_file();
-            data.ItemsSource = Listdata;
         }
 
         private void Showdata(object sender, MouseButtonEventArgs e)
@@ -233,6 +229,13 @@ namespace Client_Train
             disconnect();
             MessageBox.Show("Đã ngắt kết nối đến server");
             isconect = false;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Listdata = new List<Route>();
+            Listdata = Read_Database.read_file();
+            data.ItemsSource = Listdata;
         }
     }
 }
