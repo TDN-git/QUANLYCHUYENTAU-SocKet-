@@ -1,0 +1,95 @@
+﻿<Window x:Class="Client_Train.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client_Train"
+        mc:Ignorable="d"
+        Title="Client" Height="500" Width="800">
+    <Grid Background="#729ea8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ListView x:Name="data" ItemsSource="{Binding}" Background="#729ea8">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="#6f706e" Width="165" MouseLeftButtonUp="Showdata" CornerRadius="5" Cursor="Hand">
+                        <StackPanel>
+                            <DockPanel VerticalAlignment="Center">
+                                <Label Foreground="Black" FontWeight="Bold">Mã Chuyến:</Label>
+                                <TextBlock Foreground="YellowGreen" FontWeight="DemiBold" Text="{Binding MSC}" Margin="8"/>
+                            </DockPanel>
+                            <DockPanel VerticalAlignment="Center">
+                                <Label Foreground="Black" FontWeight="Bold">Lộ Trình:</Label>
+                                <TextBlock Foreground="WhiteSmoke" Text="{Binding TenChuyen}" Margin="8"/>
+                            </DockPanel>
+                            <DockPanel>
+                                <Label Foreground="Black" FontWeight="Bold">Loại Vé:</Label>
+                                <TextBlock Foreground="WhiteSmoke" Margin="5" Text="{Binding LoaiVe}"/>
+                            </DockPanel>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Grid.Column="1">
+            <Label HorizontalAlignment="Center" Margin="10" FontSize="20" FontWeight="DemiBold" Foreground="WhiteSmoke">--- Thông Tin Đặt Vé Các Chuyến Tàu ---</Label>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Width="120" Click="connect_server" Margin="5" Background="GreenYellow">Connect Server</Button>
+                <Button Width="120" Click="disconnect_server" Margin="5" Background="Orangered">Disconnect Server</Button>
+            </StackPanel>
+            <Border CornerRadius="10" Background="WhiteSmoke" Margin="30 0">
+                <StackPanel Margin="5">
+                    <DockPanel>
+                        <Label FontSize="14" FontWeight="SemiBold" Foreground="OrangeRed">Mã Chuyến:</Label>
+                        <Border Margin="5" BorderBrush="Snow" BorderThickness="0 0 0 1" Width="{Binding ElementName=machuyen}">
+                            <TextBlock FontSize="14" x:Name="machuyen" FontWeight="DemiBold" Foreground="Aqua"></TextBlock>
+                        </Border>
+                    </DockPanel>
+                    <DockPanel>
+                        <Label FontSize="14" FontWeight="SemiBold" Foreground="OrangeRed">Tên Chuyến:</Label>
+                        <TextBlock  Margin="5" FontSize="14" x:Name="tenchuyen" FontWeight="DemiBold" Foreground="Aqua"></TextBlock>
+                    </DockPanel>
+                    <DockPanel>
+                        <Label FontSize="14" FontWeight="SemiBold" Foreground="OrangeRed">Loại Vé:</Label>
+                        <TextBlock  Margin="5" FontSize="14" x:Name="loaive" FontWeight="DemiBold" Foreground="Aqua"></TextBlock>
+                    </DockPanel>
+                    <DockPanel>
+                        <Label FontSize="14" FontWeight="SemiBold" Foreground="OrangeRed">Giá Vé ( /1vé ):</Label>
+                        <TextBlock  Margin="5" FontSize="14" x:Name="giave" FontWeight="DemiBold" Foreground="Aqua"></TextBlock>
+                    </DockPanel>
+                    <DockPanel>
+                        <Label FontSize="14" FontWeight="SemiBold" Foreground="OrangeRed">So Luong Ve:</Label>
+                        <TextBox FontSize="14" x:Name="soluong" FontWeight="DemiBold" Foreground="Aqua" Margin="5" Width="200">0</TextBox>
+                        <Button Width="20" Margin="5 0" Click="count_up">+</Button>
+                        <Button Width="20" Margin="5 0" Click="Count_down">-</Button>
+                        <Label FontSize="14" FontWeight="SemiBold" Foreground="OrangeRed">Số Lượng Tồn: </Label>
+                        <TextBlock x:Name="soluongveton" Margin="7" FontWeight="DemiBold" Foreground="Aqua">0</TextBlock>
+                    </DockPanel>
+                    <Button Width="100" HorizontalAlignment="Right" Margin="20" Background="GreenYellow" Click="Buy_ticket">Mua Vé</Button>
+                    <TextBlock x:Name="thongbao" Foreground="Red" HorizontalAlignment="Center"></TextBlock>
+                    <DockPanel>
+                        <Label>Giá Tiền:</Label>
+                        <TextBlock x:Name="gia" Foreground="Orange" Text="{Binding}" VerticalAlignment="Center" FontWeight="DemiBold"/>
+                        <Label Margin="5 0" Foreground="Green">$</Label>
+                        
+                    </DockPanel>
+                    <Label HorizontalAlignment="Center" FontWeight="DemiBold" Foreground="MediumPurple">Thông Báo Từ Server</Label>
+                    <ListBox Height="60" Margin="20 2" Name="listchat">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" MouseLeftButtonDown="show_cost"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
+</Window>
